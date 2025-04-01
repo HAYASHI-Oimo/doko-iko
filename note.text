@@ -1,3 +1,10 @@
+## pushの前にエラーチェック!!!
+ - rails test
+ - rails assets:precompile
+ - rubocop -a
+
+
+
 # エラーログ
 ## 日付: YYYY-MM-DD
 ### エラー内容:

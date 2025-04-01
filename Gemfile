@@ -38,9 +38,9 @@ gem "sassc"
 
 gem "bulma-rails"
 
-ruby '3.4.2'
+ruby "3.4.2"
 
-gem 'sass-rails', '~> 6'
+gem "sass-rails", "~> 6"
 
 
 group :development, :test do
