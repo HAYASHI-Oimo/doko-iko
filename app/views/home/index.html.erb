@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>スタートページ</title>
-    <link rel="stylesheet" href="/assets/application.css">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <%= javascript_include_tag "application", type: "module" %>
   </head>
   <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        おでかけアプリ「doko-iko」
-      </h1>
-      <p class="subtitle">
-        おでかけをもっと楽しく簡単に！
-      </p>
-    </div>
-  </section>
-  <form class="box">
-    <div class="field">
-      <div class="control">
-        <input class="input" type="email" placeholder="例: user@example.com" />
+    <section class="section">
+      <div class="container">
+        <h1 class="title">おでかけアプリ「doko-iko」</h1>
+        <p class="subtitle">おでかけをもっと楽しく簡単に！</p>
       </div>
-    </div>
-
-    <button class="button is-primary">検索</button>
-  </form>
+    </section>
+    <form class="box">
+      <div class="field">
+        <div class="control">
+          <input class="input" type="email" id="email" name="email" placeholder="例: user@example.com" />
+        </div>
+      </div>
+      <button class="button is-primary">検索</button>
+    </form>
   </body>
 </html>

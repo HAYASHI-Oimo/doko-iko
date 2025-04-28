@@ -42,6 +42,10 @@ ruby "3.4.2"
 
 gem "sass-rails", "~> 6"
 
+gem "google_places"
+gem "dotenv-rails"
+gem "httparty"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

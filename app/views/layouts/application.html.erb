@@ -15,9 +15,18 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    
+    <%= render "shared/menu" %>
+    <%= javascript_include_tag "menu" %>
   </head>
 
   <body>
     <%= yield %>
+
+    <% if flash[:error] %>
+      <div class="flash flash-error">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
   </body>
 </html>
