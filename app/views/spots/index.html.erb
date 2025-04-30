@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>スポット検索結果一覧</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <%= javascript_include_tag "application", type: "module" %>
+  </head>
+<body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">スポット検索</h1>
+        
+        <%= form_with url: spots_path, method: :get, local: true, class: "box" do |form| %>
+          <div class="field">
+            <label class="label"><%= form.label :query, "検索キーワード" %></label>
+            <div class="control">
+              <%= form.text_field :query, class: "input", placeholder: "例: 公園, カフェ" %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <%= form.submit "検索", class: "button is-primary" %>
+            </div>
+          </div>
+        <% end %>
+
+        <h2 class="subtitle mt-4">検索結果</h2>
+        <% if @spots.any? %>
+          <ul class="box">
+            <% @spots.each do |spot| %>
+              <li class="content">
+                <h3 class="title is-4"><%= spot["name"] %></h3>
+                <p>住所: <span class="has-text-info"><%= spot["formatted_address"] %></span></p>
+                <p>評価: <span class="tag is-warning"><%= spot["rating"] %> ★</span></p>
+                <%= link_to "詳細を見る", spot_path(id: spot["place_id"]), class: "button is-link is-small" %>
+              </li>
+              <hr>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="notification is-warning">検索結果がありません。</p>
+        <% end %>
+      </div>
+    </section>
+  </body>
+</html>

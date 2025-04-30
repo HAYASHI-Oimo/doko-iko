@@ -46,6 +46,10 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+  Rails.logger = ActiveSupport::Logger.new(STDOUT)
+  Rails.logger.level = Logger::DEBUG
+  puts "Rails.logger is: #{Rails.logger.inspect}"
+
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 

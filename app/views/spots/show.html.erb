@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>スポット詳細</title>
+    <%= javascript_include_tag "application", type: "module" %>
+  </head>
+  <body>
+<h1><%= @spot_details["name"] || "スポット名情報なし" %></h1>
+<p>住所： <%= @spot_details["formatted_address"] || "住所情報なし" %></p>
+<p>評価： <%= @spot_details["rating"] || "評価情報なし" %> ★</p>
+<p>電話番号： <%= @spot_details["formatted_phone_number"] || "電話番号情報なし" %></p>
+
+<h2>現在の天気</h2>
+<% if @weather["error"] %>
+  <p>天気情報を取得できませんでした</p>
+<% else %>
+  <p>現在の天気： <%= @weather["weather"][0]["description"] %></p>
+  <p>気温： <%= @weather["main"]["temp"] %>℃</p>
+  <p>湿度： <%= @weather["main"]["humidity"] %>％</p>
+  <p>風速： <%= @weather["wind"]["speed"] %>m/s</p>
+<% end %>
+
+<% if @spot_details["photos"] %>
+  <h2>写真</h2>
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @spot_details["photos"][0]["photo_reference"] %>&key=<%= ENV['GOOGLE_API_KEY'] %>" alt="スポットの写真">
+<% else %>
+  <p>写真情報なし</p>
+<% end %>
+    <p><%= link_to "検索結果に戻る", spots_path %></p>
+  </body>
+</html>
