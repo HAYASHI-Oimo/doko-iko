@@ -3,8 +3,6 @@ class SpotsController < ApplicationController
     if params[:query].present?
       response = Spot.fetch_spots(params[:query])
 
-      Rails.logger.debug("Fetched Spots Data: #{@spots.inspect}")
-
       if response[:success]
         @spots = response[:results] # ここでモデルの処理済データを受け取る
       else
@@ -25,7 +23,6 @@ class SpotsController < ApplicationController
       @spot_details = Spot.fetch_place_details(params[:id])
 
       if @spot_details && @spot_details[:success]
-        Rails.logger.debug("Place Details: #{@spot_details[:details].inspect}") # ✅ 修正
 
         Spot.save_spot_details(@spot_details[:details])
         @spot = Spot.find_by(place_id: params[:id])
